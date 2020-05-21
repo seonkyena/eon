@@ -36,4 +36,4 @@ class reservation():
                 print("입력 오류입니다.")   
                 self.select_menu()
 
-    def train_time(self):
+    def train_search(self, train_lines):
