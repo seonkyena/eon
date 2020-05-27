@@ -37,3 +37,4 @@ class reservation():
                 self.select_menu()
 
     def train_search(self, train_lines):
+        choose_time = int(input(""))
