@@ -75,7 +75,7 @@ class TGVisFrench:
 
         reservation = input("\n해당 기차표를 예매하시겠습니까? (Y/N) 입력 : ")
         if (reservation == 'Y') or (reservation == 'y'):
-            if train_lines[add_ress][5] != "매진":
+            if train_lines[add_ress][5] != 0:
                 completelist.append(train_lines[add_ress])
                 train_lines[add_ress][5] = int(train_lines[add_ress][5]) - 1
                 print("\n예매가 완료되었습니다.")
@@ -83,6 +83,9 @@ class TGVisFrench:
                 print("\n매진입니다.")
                 self.menulist()
         elif (reservation == 'N') or (reservation == 'n'):
+            self.menulist()
+        else:
+            print("올바르지 않은 입력입니다. 한영키를 확인해주세요. \n")
             self.menulist()
         return add_ress, completelist
 
@@ -106,30 +109,24 @@ class TGVisFrench:
         select = input("메뉴를 선택하세요. : ")
         if select == "1":
             print("예매 내역입니다.")
-            for i in range(len(completelist)):
-                i += 1
-                print(completelist)
-                print("\n")
+            print(completelist)
+            print("\n")
         elif select == "2": 
             cancel = input("\n예매를 취소하시겠습니까? (Y/N) 입력 : ")
             if (cancel == 'Y') or (cancel == 'y'):
-                if completelist:
-                    print ("예약번호 0번부터 시작합니다.")
-                    print (completelist)
-                    cancel_number = int(input("몇 번을 취소하시겠습니까 ? : "))
-                    for g in range(len(train_lines)):
+                print ("예약번호 0번부터 시작합니다.")
+                print (completelist)
+                cancel_number = int(input("몇 번을 취소하시겠습니까 ? : "))
+                for g in range(len(train_lines)):
+                    if not completelist:
+                        print ("예매 된 내역이 없습니다.")
+                        self.menulist()
+                    else:
                         if completelist[cancel_number] == train_lines[g]:
-                            if train_lines[g][5] == '매진':
-                                train_lines[g][5] = 1
-                                completelist.pop(cancel_number)
-                            else:
-                                train_lines[g][5] = train_lines[g][5] + 1
-                                completelist.pop(cancel_number) 
-                                print ("예약이 취소되었습니다.")
-                                self.menulist
-                elif not completelist:
-                    print ("예매 된 내역이 없습니다.")
-                    self.menulist()
+                            train_lines[g][5] = train_lines[g][5] + 1
+                            completelist.pop(cancel_number)
+                            print ("\n예약이 취소되었습니다. \n메뉴로 돌아갑니다. \n")
+                            break
             elif (cancel == 'N') or (cancel == 'n'):
                 print('뒤로 갑니다.')
                 self.reserv_lines()
