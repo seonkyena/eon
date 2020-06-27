@@ -24,7 +24,6 @@ for i in range(len(modyList)):
     modyList[i][0] = modyList[i][0].replace(":", "")
     modyList[i][0] = int(modyList[i][0])
 
-
 class TGVisFrench:
 
     def menulist(self):
@@ -50,10 +49,10 @@ class TGVisFrench:
                 self.menulist()
 
     def search_train(self):
-        des_train = list(input("출발시간, 출발역, 도착역, 열차종류 입력 예) 07:20 서울 부산 KTX 입력 : ").split())
-        tmp_mytime = des_train[0].replace(":", "")
+        userspick = list(input("출발시간, 출발역, 도착역, 열차종류 입력 예) 07:20 서울 부산 KTX 입력 : ").split())
+        tmp_mytime = userspick[0].replace(":", "")
         mytime = int(tmp_mytime[:2]) * 60 + int(tmp_mytime[2:4])
-        des_train[0] = close_time(mytime)
+        userspick[0] = close_time(mytime)
 
         withoutseat = copy.deepcopy(modyList)
         for n in range(len(modyList)):
@@ -61,7 +60,7 @@ class TGVisFrench:
 
         final_list = []
         for k in range(len(withoutseat)):
-            if withoutseat[k] == des_train:
+            if withoutseat[k] == userspick:
                 final_list = withoutseat[k].copy()
                 final_list.append(train_lines[k][5])
                 add_ress = k     #선택된 기차편의 주소
