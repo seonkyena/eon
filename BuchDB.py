@@ -20,9 +20,9 @@ class BuchData:
         return self.Book_lineup
         
     def plus(self):
-        self.Book_in = input("도서명, 저자, 출판연도, 출판사명, 장르를 입력해주세요 : ").split()
-        if len(self.Book_in) == 5:
-            self.Book_lineup.append(self.Book_in)
+        plus_book = input("도서명, 저자, 출판연도, 출판사명, 장르를 입력해주세요 : ").split()
+        if len(plus_book) == 5:
+            self.Book_lineup.append(plus_book)
             print("추가되었습니다. \n")
         else:
             print ("입력이 누락되었습니다. 다시 입력해주세요")
