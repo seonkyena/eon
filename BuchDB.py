@@ -66,6 +66,8 @@ class BuchData:
             if delete_book == self.Book_lineup[j][0]:
                 self.Book_lineup.pop(j)
                 print('삭제되었습니다. \n')
+                break
+        return self.Book_lineup
     
     def all_books(self):
         for p in range(len(self.Book_lineup)):
